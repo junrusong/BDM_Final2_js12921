@@ -16,11 +16,6 @@ import pyproj
 import IPython
 import os
 import sys
-get_ipython().run_line_magic('matplotlib', 'inline')
-IPython.display.set_matplotlib_formats('svg')
-pd.plotting.register_matplotlib_converters()
-sns.set_style("whitegrid")
-
 import pyspark
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
