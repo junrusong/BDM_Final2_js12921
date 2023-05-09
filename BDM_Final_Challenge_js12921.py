@@ -34,7 +34,7 @@ cbg_FN = os.getenv('SPARK_YARN_STAGING_DIR')+'/nyc_cbg_centroids.csv'
 # In[ ]:
 
 
-nyc_supermarkets = sc.textFile('supermarket_FN').filter(lambda x: not x.startswith('place_id,latitude,'))\
+nyc_supermarkets = sc.textFile(supermarket_FN).filter(lambda x: not x.startswith('place_id,latitude,'))\
             .map(lambda line: next(csv.reader([line])))
 
 
@@ -49,7 +49,7 @@ safegraph_placekeys = set(nyc_supermarkets.map(lambda x: x[-2]).collect())
 
 proj = pyproj.Proj(init='EPSG:2263', preserve_units=True)
 
-nyc_cbg_centroids = sc.textFile('cbg_FN') \
+nyc_cbg_centroids = sc.textFile(cbg_FN) \
                      .filter(lambda x: not x.startswith('cbg_fips,')) \
                      .map(lambda line: next(csv.reader([line])))\
                      .filter(lambda x: any(x[0].startswith(prefix) for prefix in ['36061','36005','36047','36081','36085']))\
